@@ -22,11 +22,11 @@ import Layout from "@/layout";
 import { useState } from "react";
 import { Input } from "@/components/Form/Input";
 
-interface data {
+export type CreateUserFormData = {
   name: string;
   price: number;
   description: string;
-}
+};
 
 const createUserFormSchema = yup.object().shape({
   name: yup.string().required("Nome obrigatório"),
@@ -44,7 +44,7 @@ export default function CreateUser(): JSX.Element {
     resolver: yupResolver(createUserFormSchema),
   });
 
-  const handleCreateUser: SubmitHandler<data> = async (values) => {
+  const handleCreateUser = async (values: any) => {
     setIsLoading(true);
     try {
       await axios.post("api/users", {
