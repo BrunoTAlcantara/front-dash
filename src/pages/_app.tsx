@@ -1,6 +1,21 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import { AppProps } from "next/app";
+import { ChakraProvider } from "@chakra-ui/react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { SidebarDrawerProvider } from "@/contexts/SidebarDrawerContext";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+
+import { theme } from "@/styles/theme";
+
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  return (
+    <UserProvider>
+      <ChakraProvider theme={theme}>
+        <SidebarDrawerProvider>
+          <Component {...pageProps} />
+        </SidebarDrawerProvider>
+      </ChakraProvider>
+    </UserProvider>
+  );
 }
+
+export default MyApp;
