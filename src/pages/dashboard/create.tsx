@@ -8,7 +8,7 @@ import {
   HStack,
   Button,
 } from "@chakra-ui/react";
-import Link from "next/link";
+
 import { useRouter } from "next/dist/client/router";
 
 import * as yup from "yup";
@@ -18,21 +18,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import axios from "axios";
 
-import { CreateUserFormData } from "./@types";
 import Layout from "@/layout";
 import { useState } from "react";
 import { Input } from "@/components/Form/Input";
 
+interface data {
+  name: string;
+  price: number;
+  description: string;
+}
+
 const createUserFormSchema = yup.object().shape({
   name: yup.string().required("Nome obrigatório"),
-  email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-  password: yup
-    .string()
-    .required("Senha obrigatória")
-    .min(6, "No mínimo 6 caracteres"),
-  password_confirmation: yup
-    .string()
-    .oneOf([null, yup.ref("password")], " As senhas precisam ser iguais"),
+  price: yup.number().required("Preço obrigatório"),
+  description: yup.string().required("Descricao obrigatória"),
 });
 
 export default function CreateUser(): JSX.Element {
@@ -45,9 +44,7 @@ export default function CreateUser(): JSX.Element {
     resolver: yupResolver(createUserFormSchema),
   });
 
-  const handleCreateUser: SubmitHandler<CreateUserFormData> = async (
-    values
-  ) => {
+  const handleCreateUser: SubmitHandler<data> = async (values) => {
     setIsLoading(true);
     try {
       await axios.post("api/users", {
@@ -81,28 +78,12 @@ export default function CreateUser(): JSX.Element {
 
         <VStack spacing="8">
           <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
-            <Input
-              name="name"
-              label="Produto"
-              error={formState.errors.name}
-              {...register("name")}
-            />
-            <Input
-              name="price"
-              type="number"
-              label="Preço"
-              error={formState.errors.email}
-              {...register("price")}
-            />
+            <Input label="Produto" {...register("name")} />
+            <Input type="number" label="Preço" {...register("price")} />
           </SimpleGrid>
 
           <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
-            <Input
-              name="description"
-              label="Descrição"
-              error={formState.errors.password}
-              {...register("description")}
-            />
+            <Input label="Descrição" {...register("description")} />
           </SimpleGrid>
         </VStack>
 
