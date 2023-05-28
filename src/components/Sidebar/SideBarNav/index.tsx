@@ -12,19 +12,34 @@ export function SideBarNav(): JSX.Element {
         <NavLink href="/dashboard" icon={Gauge}>
           Dashboard
         </NavLink>
-
         <NavLink href="/dashboard/perfil" icon={User}>
           Perfil
         </NavLink>
       </NavSection>
 
-      <NavSection title="Produtos">
+      <NavSection title="Apostas">
         <NavLink href="/dashboard/products" icon={Box}>
-          Produtos
+          Minhas Apostas
         </NavLink>
 
-        <NavLink href="/automation" icon={FolderPlus}>
-          Novo Produto
+        <NavLink href="/dashboard/create" icon={FolderPlus}>
+          Estatistica
+        </NavLink>
+        <NavLink href="/dashboard/create" icon={FolderPlus}>
+          Metodos
+        </NavLink>
+      </NavSection>
+
+      <NavSection title="Metodos">
+        <NavLink href="/dashboard/products" icon={Box}>
+          Meus Metodos
+        </NavLink>
+
+        <NavLink href="/dashboard/create" icon={FolderPlus}>
+          Metodos
+        </NavLink>
+        <NavLink href="/dashboard/create" icon={FolderPlus}>
+          Metodos
         </NavLink>
       </NavSection>
     </Stack>

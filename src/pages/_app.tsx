@@ -1,20 +1,21 @@
 import { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { SidebarDrawerProvider } from "@/contexts/SidebarDrawerContext";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 import { theme } from "@/styles/theme";
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps): JSX.Element {
   return (
-    <UserProvider>
-      <ChakraProvider theme={theme}>
-        <SidebarDrawerProvider>
-          <Component {...pageProps} />
-        </SidebarDrawerProvider>
-      </ChakraProvider>
-    </UserProvider>
+    <ChakraProvider theme={theme}>
+      <SidebarDrawerProvider>
+        <Component {...pageProps} />
+      </SidebarDrawerProvider>
+    </ChakraProvider>
   );
 }
 

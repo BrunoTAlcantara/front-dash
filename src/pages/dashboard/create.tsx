@@ -92,7 +92,7 @@ export default function CreateUser(): JSX.Element {
             <Button
               type="submit"
               isLoading={formState.isSubmitting}
-              colorScheme="orange"
+              colorScheme="green"
             >
               Salvar
             </Button>

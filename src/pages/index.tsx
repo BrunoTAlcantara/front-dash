@@ -1,64 +1,56 @@
-import { Flex, Button, Stack } from "@chakra-ui/react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  Button,
+  Checkbox,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Link,
+  Stack,
+  Image,
+} from "@chakra-ui/react";
 
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Input } from "@/components/Form/Input";
-import Link from "next/link";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
-type SignInFormData = {
-  email: string;
-  password: string;
-};
-
-const signInFormSchema = Yup.object().shape({
-  email: Yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-  password: Yup.string().required("Senha obrigatório"),
-});
-
-export default function Home(): JSX.Element {
-  const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(signInFormSchema),
-  });
-
-  const { isLoading, user, error } = useUser();
-
-  const { errors } = formState;
-
-  const handleSignIn: SubmitHandler<SignInFormData> = ({ email, password }) => {
-    console.log(email, password);
-  };
-
-  const { push } = useRouter();
-  const handleLogout = () => push("/api/auth/logout");
-  const handleLogin = () => push("/api/auth/login?returnTo=/dashboard");
-
-  if (isLoading) return <h1>Carregando</h1>;
-
+export default function Home() {
   return (
-    <Flex w="100vw" h="100vh" align="center" justify="center">
-      <Flex
-        w="100%"
-        maxWidth={360}
-        bg="gray.800"
-        p="8"
-        borderRadius={8}
-        flexDir="column"
-      >
-        <Stack spacing="4">
-          {user ? (
-            <>
-              <Button onClick={handleLogout}> Logout</Button>
-            </>
-          ) : (
-            <Button bg="orange.500" onClick={handleLogin}>
-              Logar
+    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
+      <Flex p={8} flex={1} align={"center"} justify={"center"}>
+        <Stack spacing={4} w={"full"} maxW={"md"}>
+          <Heading fontSize={"2xl"}>Bem vindo!</Heading>
+          <FormControl colorScheme="green" id="email">
+            <FormLabel>Email</FormLabel>
+            <Input type="email" />
+          </FormControl>
+          <FormControl colorScheme="green" id="password">
+            <FormLabel>Senha</FormLabel>
+            <Input colorScheme="green" type="password" />
+          </FormControl>
+          <Stack spacing={6}>
+            <Stack
+              direction={{ base: "column", sm: "row" }}
+              align={"start"}
+              justify={"space-between"}
+            >
+              <Checkbox>Lembrar Senha</Checkbox>
+              <Link color={"green.500"}>Esqueceu a senha?</Link>
+            </Stack>
+            <Button colorScheme={"green"} variant={"solid"}>
+              Entrar
             </Button>
-          )}
+          </Stack>
         </Stack>
       </Flex>
-    </Flex>
+      {/* <Flex flex={1}>
+        <Image
+          alt={"Login Image"}
+          objectFit={"cover"}
+          src={
+            "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80"
+          }
+        />
+      </Flex> */}
+    </Stack>
   );
 }

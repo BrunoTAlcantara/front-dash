@@ -26,6 +26,7 @@ import NextLink from "next/link";
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar";
 import { Pagination } from "@/components/Pagination";
+import CardApostas from "@/components/Cards/cardAposta";
 
 export default function UsersList(): JSX.Element {
   const [page, setPage] = useState(1);
@@ -77,16 +78,18 @@ export default function UsersList(): JSX.Element {
         <Sidebar />
 
         <Box flex="1" borderRadius={8} bg="gray.800" p="8">
+          <CardApostas></CardApostas>
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal">
               Produtos
             </Heading>
+            <CardApostas></CardApostas>
 
             <Button
               as="a"
               size="sm"
               fontSize="sm"
-              colorScheme="orange"
+              colorScheme="green"
               leftIcon={<Icon as={Plus} fontSize="20" />}
             >
               Criar Novo
@@ -107,7 +110,7 @@ export default function UsersList(): JSX.Element {
                 <Thead>
                   <Tr>
                     <Th px={["4", "4", "6"]} color="gray.300" width="8">
-                      <Checkbox colorScheme="orange" />
+                      <Checkbox colorScheme="green" />
                     </Th>
                     <Th>Usuário</Th>
                     <Th>Preço</Th>
@@ -120,7 +123,7 @@ export default function UsersList(): JSX.Element {
                   {data.map((product: Product) => (
                     <Tr key={product.id}>
                       <Td px="6">
-                        <Checkbox colorScheme="orange" />
+                        <Checkbox colorScheme="green" />
                       </Td>
                       <Td>
                         <Text fontWeight="bold">{product.name}</Text>

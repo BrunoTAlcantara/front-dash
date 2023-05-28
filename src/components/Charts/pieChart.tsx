@@ -9,10 +9,10 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Guloseimas", value: 40, fill: "#0088FE" },
-  { name: "Limpeza", value: 30, fill: "#00C49F" },
-  { name: "Paes", value: 30, fill: "#FFBB28" },
-  { name: "Bebidas", value: 20, fill: "#FF8042" },
+  { name: "Futebol", value: 40, fill: "#0088FE" },
+  { name: "E-sports", value: 30, fill: "#00C49F" },
+  { name: "Volei", value: 30, fill: "#FFBB28" },
+  { name: "Mais de 1 gol", value: 20, fill: "#FF8042" },
 ];
 
 let renderLabel = function (entry: { name: string }) {

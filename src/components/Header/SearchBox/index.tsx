@@ -1,9 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Flex, Input, Icon } from "@chakra-ui/react";
 import { Search } from "lucide-react";
 
 export function SearchBox(): JSX.Element {
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const [queryText, setQueryText] = useState("");
+  const [seachResult, setSeachResult] = useState([]);
+
+  const handleChange = (e) => setQueryText(e.target.value);
 
   return (
     <Flex
@@ -22,6 +27,7 @@ export function SearchBox(): JSX.Element {
       <Input
         color="gray.50"
         variant="unstyled"
+        a
         px="4"
         mr="2"
         placeholder="Buscar na plataforma"

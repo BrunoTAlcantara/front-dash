@@ -8,9 +8,9 @@ export function Logo(): JSX.Element {
       letterSpacing="tight"
       w="64"
     >
-      Dash
-      <Text as="span" ml="1" color="orange.500">
-        Admin
+      Hunter
+      <Text as="span" ml="1" color="green.500">
+        Green
       </Text>
     </Text>
   );

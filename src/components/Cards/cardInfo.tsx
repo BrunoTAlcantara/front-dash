@@ -21,29 +21,30 @@ export default function CardInfo({
       direction={{ base: "column", sm: "row" }}
       overflow="hidden"
       variant="elevated"
-      colorScheme="orange"
+      colorScheme="green"
       bg={color}
     >
       <Stack>
         <CardBody>
           <Flex mx="auto" alignItems="center">
             <Flex
-              border="solid "
-              h="10"
-              w="10"
+              h="50px"
+              w="50px"
               alignItems="center"
               justifyContent="center"
-              borderWidth="1px"
               borderRadius="100%"
               mr="3"
+              color="#FFFFFF"
             >
-              <Icon as={icon}></Icon>
+              <Icon fontSize="4xl" as={icon}></Icon>
             </Flex>
             <div>
-              <Text fontSize="xs" color="gray.100">
+              <Text fontSize="large" fontWeight="bold" color="gray.100">
                 {title}
               </Text>
-              <Text>{value}</Text>
+              <Text fontSize="2xl" fontWeight="bold" color="gray.100">
+                {value}
+              </Text>
             </div>
           </Flex>
         </CardBody>

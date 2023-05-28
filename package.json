@@ -28,6 +28,7 @@
     "lucide-react": "^0.130.0",
     "miragejs": "^0.1.47",
     "next": "13.2.4",
+    "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "18.2.0",
