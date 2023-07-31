@@ -19,6 +19,8 @@ import {
   Tr,
   Spinner,
   useBreakpointValue,
+  HStack,
+  Stack,
 } from "@chakra-ui/react";
 import { Edit, X, Plus } from "lucide-react";
 import NextLink from "next/link";
@@ -78,12 +80,10 @@ export default function UsersList(): JSX.Element {
         <Sidebar />
 
         <Box flex="1" borderRadius={8} bg="gray.800" p="8">
-          <CardApostas></CardApostas>
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal">
-              Produtos
+              Apostas
             </Heading>
-            <CardApostas></CardApostas>
 
             <Button
               as="a"
@@ -105,74 +105,11 @@ export default function UsersList(): JSX.Element {
               <Text>Falha ao obter dados dos usuários</Text>
             </Flex>
           ) : (
-            <>
-              <Table colorScheme="whiteAlpha">
-                <Thead>
-                  <Tr>
-                    <Th px={["4", "4", "6"]} color="gray.300" width="8">
-                      <Checkbox colorScheme="green" />
-                    </Th>
-                    <Th>Usuário</Th>
-                    <Th>Preço</Th>
-                    <Th>Estoque</Th>
-                    {isWideVersion && <Th>Data de Cadastro</Th>}
-                    <Th width="40" />
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {data.map((product: Product) => (
-                    <Tr key={product.id}>
-                      <Td px="6">
-                        <Checkbox colorScheme="green" />
-                      </Td>
-                      <Td>
-                        <Text fontWeight="bold">{product.name}</Text>
-                      </Td>
-                      <Td>
-                        <Text fontWeight="bold">R$ {product.price}</Text>
-                      </Td>
-                      <Td>
-                        <Text fontWeight="bold">{product.estoque} unid</Text>
-                      </Td>
-                      {isWideVersion && <Td>{product.created_at}</Td>}
-                      {isWideVersion && (
-                        <Td>
-                          <Box
-                            display="flex"
-                            flexDir="row"
-                            alignItems="center"
-                            justifyContent="space-between"
-                          >
-                            <Button
-                              as="a"
-                              size="sm"
-                              fontSize="sm"
-                              colorScheme="purple"
-                            >
-                              <Icon as={Edit} fontSize="20" />
-                            </Button>
-                            <Button
-                              as="a"
-                              size="sm"
-                              fontSize="sm"
-                              colorScheme="red"
-                            >
-                              <Icon as={X} fontSize="20" />
-                            </Button>
-                          </Box>
-                        </Td>
-                      )}
-                    </Tr>
-                  ))}
-                </Tbody>
-              </Table>
-
-              <Pagination
-                totalCountOfRegisters={4}
-                currentPage={page}
-                onPageChange={setPage}
-              />
-            </>
+            <Stack gap="15px">
+              <CardApostas></CardApostas>
+              <CardApostas></CardApostas>
+              <CardApostas></CardApostas>
+            </Stack>
           )}
         </Box>
       </Flex>

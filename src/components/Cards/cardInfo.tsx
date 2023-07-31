@@ -13,7 +13,6 @@ export default function CardInfo({
   title,
   value,
   color,
-
   icon,
 }: ICardInfoProps) {
   return (
